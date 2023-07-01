@@ -1,0 +1,77 @@
+ENS Design System (alpha)
+Design system for ENS built with React and styled-components.
+Install
+
+yarn add @ensdomains/thorin
+Set Up
+Wrap the root of your app in a ThemeProvider module. Import ThorinGlobalStyles and declare it as a child of ThemeProvider. Import lightTheme or darkTheme and pass it to the ThemeProvider. Add Satoshi to your font stack.
+In this example we are adding the lightTheme.
+
+import React, { useState } from 'react'
+import { ThemeProvider } from 'styled-components'
+import { ThorinGlobalStyles, lightTheme } from '@ensdomains/thorin'
+
+const App = () => {
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <ThorinGlobalStyles />
+      {children}
+    </ThemeProvider>
+  )
+}
+Dark Theme
+To use the dark theme, import darkTheme and pass it to the ThemeProvider.
+
+import React, { useState } from 'react'
+import { ThemeProvider } from 'styled-components'
+import { ThorinGlobalStyles, darkTheme } from '@ensdomains/thorin'
+
+const App = () => {
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <ThorinGlobalStyles />
+      {children}
+    </ThemeProvider>
+  )
+}
+Custom Themes
+To customise the theme, you can change properties on either the lightTheme or darkTheme objects, or create an entirely new one.
+
+import { ThemeProvider, lightTheme } from '@ensdomains/thorin'
+
+const theme = {
+  ...lightTheme,
+  colors: {
+    ...lightTheme.colors,
+    foreground: 'rgba(255, 255, 255, 0.4)',
+  },
+}
+
+const App = () => {
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
+}
+Use Components
+
+import { Button, LockSVG } from '@ensdomains/thorin'
+
+Connect Wallet
+<DeleteMe alignItems="center">
+  <div style={{ width: '180px' }}>
+    <Button prefix={<LockSVG />} variant="primary">
+      Connect Wallet
+    </Button>
+  </div>
+</DeleteMe>
+
+
+Hide Code
+Open in Playroom test
+before implementing 
+Component Groups
+Thorin is organized according to the Atomic Design Methodology.
+Atoms serve as the foundational building blocks that comprise all our user interfaces. These atoms include basic HTML elements like form labels, inputs, buttons, and others that can’t be broken down any further without ceasing to be functional.
+Molecules are relatively simple groups of UI elements functioning together as a unit. For example, a form label, search input, and button can join together to create a search form molecule.
+Organisms are relatively complex UI components composed of groups of molecules and/or atoms and/or other organisms. These organisms form distinct sections of an interface.
+Playroom end 
+if passed resolve to mainnet
+Playroom is a zero-install code-oriented design environment, that allows you to test components simultaneously across a variety of themes and screen sizes.
